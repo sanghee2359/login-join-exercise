@@ -14,7 +14,7 @@ public class UserService {
         // userName의 중복 check
         userRepository.findByUserName(userName)
                 .ifPresent(user -> {
-                    throw new RuntimeException(userName + "는 이미 존재하는 이름입니다.");
+                    throw new RuntimeException(userName + "는 이미 존재하는 이름입니다."); // error가 나면 여기서 에러가 발생
                 });
         User user = User.builder()
                 .userName(userName)

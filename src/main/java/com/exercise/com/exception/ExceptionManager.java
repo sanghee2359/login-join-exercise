@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+// RestControllerAdvice를 사용하면 각 계층에서 바로 RestControllerAdvice에 예외를 전달하여, 어떤 계층에서 예외가 발생하여도 바로 User에게 전달할 수 있다.
 
 @RestControllerAdvice
 public class ExceptionManager {
