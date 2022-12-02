@@ -1,5 +1,6 @@
 package com.exercise.com.service;
 
+import com.exercise.com.domain.User;
 import com.exercise.com.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,11 @@ public class UserService {
                 .ifPresent(user -> {
                     throw new RuntimeException(userName + "는 이미 존재하는 이름입니다.");
                 });
+        User user = User.builder()
+                .userName(userName)
+                .password(password)
+                .build();
+        userRepository.save(user);
 
         return "SUCCESS";
     }
