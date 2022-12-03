@@ -1,16 +1,19 @@
 package com.exercise.com.service;
 
+import com.exercise.com.configuration.EncoderConfig;
 import com.exercise.com.domain.User;
 import com.exercise.com.exception.AppException;
 import com.exercise.com.exception.ErrorCode;
 import com.exercise.com.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder encoder; // encoder로 인코딩
     public String join(String userName, String password) {
 
         // userName의 중복 check
@@ -20,7 +23,7 @@ public class UserService {
                 });
         User user = User.builder()
                 .userName(userName)
-                .password(password)
+                .password(encoder.encode(password))
                 .build();
         userRepository.save(user);
 
